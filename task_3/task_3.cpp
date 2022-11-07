@@ -19,6 +19,18 @@ public:
             throw std::runtime_error("Out of range!");
         }
     }
+
+    //Запрещаем конструктор копирования и оператор присваивания для исключения ситуации
+    //двойного освобождения памяти если была выполнена операция копирования объекта
+    //  {
+    //    MyVector<int> myvector;
+    //    MyVector<int> myvector2 = myvector;
+    //  } //Здесь программа упадет(при выходе из блока)
+
+    MyVector(const MyVector&) = delete;
+
+    MyVector& operator=(const MyVector&) = delete;
+
     int size() const {
         return _size;
     }
